@@ -25,6 +25,8 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+import /init.recovery.qcom_decrypt.rc
+
 on init
     # unlink /efs > /mnt/vendor/efs
     rm /efs
@@ -33,10 +35,19 @@ on init
 
     # to cut charging battery path
     write /sys/class/power_supply/battery/siop_level 0
+    setprop prepdecrypt.setpatch true
 
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+
+    # Mount firmware
+    mkdir /vendor/firmware_mnt
+    mount vfat /dev/block/bootdevice/by-name/apnhlos /vendor/firmware_mnt ro
+
+    # Mount efs
+    mkdir /mnt/vendor/efs
+    mount ext4 /dev/block/bootdevice/by-name/efs /mnt/vendor/efs ro
 
     export ANDROID_ROOT /system_root
 

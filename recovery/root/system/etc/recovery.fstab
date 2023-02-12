@@ -45,38 +45,6 @@ product						/product	erofs	ro			wait,logical,first_stage_mount
 odm						/odm		erofs	ro			wait,logical,first_stage_mount
 system_dlkm					/system_dlkm	erofs	ro			wait,logical,first_stage_mount
 
-/dev/block/bootdevice/by-name/boot		/boot		emmc	defaults		recoveryonly
-/dev/block/bootdevice/by-name/recovery		/recovery	emmc	defaults		recoveryonly
-/dev/block/bootdevice/by-name/metadata		/metadata	ext4	defaults		wait,first_stage_mount
-/dev/block/bootdevice/by-name/userdata		/data		f2fs	noatime,nosuid,nodev,discard,usrquota,grpquota,fsync_mode=nobarrier,reserve_root=32768,resgid=5678	wait,encryptable=footer,length=-16384,fscompress
-/dev/block/bootdevice/by-name/cache		/cache		ext4	defaults		recoveryonly
-/dev/block/bootdevice/by-name/efs		/efs		ext4	defaults		recoveryonly
-/dev/block/bootdevice/by-name/sec_efs		/sec_efs	ext4	defaults		recoveryonly
-#/dev/block/bootdevice/by-name/carrier		/carrier	ext4	defaults		recoveryonly
-/dev/block/bootdevice/by-name/apnhlos		/modem		emmc	defaults		recoveryonly
-/dev/block/bootdevice/by-name/modem		/mdm		emmc	defaults		recoveryonly
-/dev/block/bootdevice/by-name/dsp		/dsp		emmc	defaults		recoveryonly
-/dev/block/bootdevice/by-name/misc		/misc		emmc	defaults		recoveryonly
-
-# Samsung ODE
-#/dev/block/bootdevice/by-name/keydata		/keydata	ext4	defaults		recoveryonly
-#/dev/block/bootdevice/by-name/keyrefuge	/keyrefuge	f2fs	defaults		recoveryonly
-
-#Auto-generated code by FOTA Portal
-/dev/block/bootdevice/by-name/dtbo		/dtbo		emmc	default			recoveryonly
-/dev/block/bootdevice/by-name/prism		/prism		ext4	defaults		recoveryonly
-/dev/block/bootdevice/by-name/optics		/optics		ext4	defaults		recoveryonly
-/dev/block/bootdevice/by-name/vbmeta_system	/vbmeta_system	emmc	default			recoveryonly
-/dev/block/bootdevice/by-name/vendor_boot	/vendor_boot	emmc	default			recoveryonly
-/dev/block/bootdevice/by-name/vbmeta_samsung	/vbmeta_samsung	emmc	default			recoveryonly
-/dev/block/bootdevice/by-name/imagefv		/imagefv	emmc	default			recoveryonly
-
-#/dev/block/mmcblk0p1				/sdcard		sdfat	defaults		recoveryonly
-
-#Auto-generated code by FOTA Build Portal
-/dev/block/bootdevice/by-name/init_boot		/init_boot	emmc	default			recoveryonly
-/dev/block/bootdevice/by-name/vm-bootsys	/vm-bootsys	ext4	default			recoveryonly
-
-#Auto-generated code by FOTA Build Portal
-/dev/block/bootdevice/by-name/efuse		/efuse		emmc	default			recoveryonly
-/dev/block/bootdevice/by-name/bootloader	/preloader	emmc	default			recoveryonly
+/dev/block/by-name/metadata			/metadata	ext4	noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic,sync	wait,check,formattable,wrappedkey,first_stage_mount
+/dev/block/bootdevice/by-name/userdata		/data		f2fs	noatime,nosuid,nodev,discard,usrquota,grpquota,fsync_mode=nobarrier,reserve_root=32768,resgid=5678,whint_mode=fs-based,inlinecrypt	latemount,wait,check,,quota,reservedsize=128M,sysfs_path=/sys/devices/platform/soc/1d84000.ufshc,checkpoint=fs,fscompress,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized+wrappedkey_v0,metadata_encryption=aes-256-xts:wrappedkey_v0,keydirectory=/metadata/vold/metadata_encryption
+/dev/block/bootdevice/by-name/misc		/misc		emmc	defaults		defaults,first_stage_mount
